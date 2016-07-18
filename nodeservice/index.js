@@ -2,6 +2,8 @@ var app = require('express')();
 
 var bodyParser = require('body-parser');
 
+var example = require('./services/usermanagement/Example');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
@@ -19,6 +21,10 @@ app.post('/testpost', function (req, res) {
     var json = req.body;
     console.log(json);
     res.send('Add new ' + json.name + ' Completed!');
+});
+
+app.post('/findAllUser', function (req, res) {
+    res.json(example.findAll());
 });
 
 /* สั่งให้ server ทำการรัน Web Server ด้วย port ที่เรากำหนด */
